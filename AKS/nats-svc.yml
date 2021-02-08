@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: dpdemo
+  name: nats-svc
+spec:
+  selector:
+    app: nats
+  
+  type: LoadBalancer    
+  ports:
+    - name: client
+      protocol: TCP
+      port: 4222
+      targetPort: 4222
+    - name: clustering
+      protocol: TCP
+      port: 6222
+      targetPort: 6222
+    - name: management
+      protocol: TCP
+      port: 8222
+      targetPort: 8222  

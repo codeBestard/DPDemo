@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "DP.MessagePublisher": {
+      "commandName": "Project"
+    }
+  }
+}

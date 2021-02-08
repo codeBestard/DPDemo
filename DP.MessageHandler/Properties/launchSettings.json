@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "DP.MessageHandler": {
+      "commandName": "Project"
+    }
+  }
+}

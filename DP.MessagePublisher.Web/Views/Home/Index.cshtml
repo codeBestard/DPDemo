@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6">&nbsp;</div>
+        <div class="col-6">
+            Job Count:<input type="number" id="messageInput" value="20"/>
+
+            <input type="button" id="sendButton" value="Send jobs" />
+            <br />
+            
+            <span id="result"></span>
+            @*Message...<input type="text" id="messageInput" />*@
+            @*<input type="button" id="sendButton" value="Send Message" />*@
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">&nbsp;</div>
+        <div class="col-6">
+            <ul id="messagesList"></ul>
+        </div>
+    </div>
+</div>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/follow.js"></script>
+
+<script>
+    //document.getElementById("sendButton").addEventListener("click", function (event) {
+  
+    //    var message = document.getElementById("messageInput").value;
+    //    connection.invoke("SendMessage", "test", message).catch(function (err) {
+    //        return console.error(err.toString());
+    //    });
+    //    event.preventDefault();
+    //});
+
+
+    var invoke_button = document.getElementById("sendButton")
+        .addEventListener("click", render);
+
+    async function render(event) {
+
+        var message = document.getElementById("messageInput").value;
+        const url = `@Url.Action("SendJob", "Home")`;
+
+        let response = await fetch(url + "/" + message);
+        let data = await response.text();
+
+
+        console.log(data);
+        document.getElementById("result").innerHTML = data;
+
+        event.preventDefault();
+    }
+
+
+</script>

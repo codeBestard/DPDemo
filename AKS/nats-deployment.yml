@@ -1,0 +1,22 @@
+
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  namespace: dpdemo
+  name: nats-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nats
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: nats
+        image: nats:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 4222  
+        - containerPort: 6222  
+        - containerPort: 8222  

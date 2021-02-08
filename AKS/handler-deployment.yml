@@ -1,0 +1,29 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  namespace: dpdemo
+  name: dphandler-deployment
+spec:
+  #replicas: 2
+  template:
+    metadata:
+      labels:
+        name: dp-handler
+    spec:
+      containers:
+      - name: dphandler
+        image: codebestard/dphandler:v1
+        imagePullPolicy: Always
+        env:
+        - name: queuelib
+          value: "nats"
+        - name: mqConnectionString
+          value: "nats://ruser:T0pS3cr3t@137.116.63.119:4222"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "120m"    
+
